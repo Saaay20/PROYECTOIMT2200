@@ -24,11 +24,11 @@ Este repositorio contiene el desarrollo completo del proyecto final para el curs
 El problema abordado es la necesidad de contar con un valor de referencia objetivo para la compra-venta de viviendas, dada la dificultad de estimar precios de forma rápida y precisa. La solución implementa un flujo de trabajo de Ciencia de Datos que automatiza la tasación aprovechando la información pública disponible en portales inmobiliarios.
 
 Las principales etapas del proyecto incluyen:
-
 * **Adquisición de Datos:** Extracción de información mediante web scraping de portalinmobiliario.com. Se generaron datasets de casas y departamentos, los cuales fueron unificados posteriormente.
 * **Geocodificación:** Implementación de un proceso para obtener latitud y longitud a partir de las direcciones registradas, permitiendo el cálculo de distancias a puntos de interés.
-* **Limpieza de Datos:** Eliminación de valores nulos, outliers y registros inconsistentes. Se descartaron variables ruidosas como el título de la publicación y la dirección completa, priorizando las coordenadas geográficas.
+* **Limpieza de Datos:** Eliminación de valores nulos, outliers y registros inconsistentes (ej. unidades monetarias erróneas). Se descartaron variables ruidosas como el título de la publicación y la dirección completa, priorizando las coordenadas geográficas para reducir el ruido en el modelo.
 * **Modelamiento:** Entrenamiento de un modelo de Regresión Lineal Múltiple para estimar precios en UF.
+
 
 
 ---
@@ -36,22 +36,21 @@ Las principales etapas del proyecto incluyen:
 ## Resultados y Limitaciones
 
 ### Desempeño del Modelo
-
-El modelo final alcanzó un coeficiente de determinación ($R^{2}$) de **0.9** en los conjuntos de entrenamiento y prueba.
-
-* **Casas:** Precisión entre 92% y 99%, comparativamente mejor que algunas herramientas comerciales.
-* **Departamentos:** Menor rendimiento debido a variables ausentes relevantes para este tipo de inmueble.
+El modelo final alcanzó un coeficiente de determinación ($R^{2}$) de 0.9 tanto en los conjuntos de entrenamiento como de prueba, lo que indica un desempeño satisfactorio general.
+* **Casas:** Los resultados fueron sólidos, con niveles de precisión entre 92% y 99% al comparar con valores reales, superando en algunos casos a herramientas comerciales.
+* **Departamentos:** El rendimiento fue inferior en este segmento. Esto se atribuye a la ausencia de variables determinantes para departamentos en el proceso de extracción (orientación, número de piso, gastos comunes).
 
 ### Limitaciones Identificadas
-
-* **Escasez de datos en ciertas comunas** (menos de 100 viviendas).
-* **Mercado primario:** Publicaciones en verde o en blanco pueden distorsionar los precios.
+* **Disponibilidad de datos:** En comunas con escasez de datos (menos de 100 viviendas disponibles), el modelo puede producir predicciones menos representativas o alejadas del valor real.
+* **Mercado primario:** Los precios de proyectos nuevos o ventas "en verde" pueden distorsionar los valores reales en ciertos sectores.
 
 ---
 
 ## Estructura del Repositorio
 
 ```text
+
+
 Proyecto/
 ├── Data/                   # Datos del proyecto
 │   ├── raw/                # Dataset original sin procesar
@@ -60,19 +59,19 @@ Proyecto/
 ├── Docs/                   # Documentación formal *(Lectura recomendada: contiene preguntas planteadas antes y durante el desarrollo, además de las conclusiones finales)**
 │   ├── Actualización_Final_del_Repositorio.pdf
 │   ├── Entrega_Inicial_del_Repositorio.pdf
-│   └── PDF_Propuesta_Proyecto.pdf
+│   └── PDF Propuesta Proyecto.pdf
 │
-├── Figures/                # Visualizaciones
+├── Figures/                # Gráficos y visualizaciones generadas
 │   ├── boxplot_precio_uf_por_comuna.png
 │   ├── matriz_correlacion.png
-│   └── ...
+│   └── ... (otros gráficos de análisis)
 │
-├── Notebooks/              # Notebooks de análisis y modelamiento
-│   ├── EDA/
-│   ├── REGRESION/
+├── Notebooks/              # Notebooks de Jupyter
+│   ├── EDA/                # Notebooks de Análisis Exploratorio
+│   ├── REGRESION/          # Notebooks de Modelamiento
 │   └── agregacion_lat_lon_data.ipynb
 │
-├── Src/                    # Scripts de scraping y utilidades
+├── Src/                    # Código de scrapping y scripts auxiliares
 │   ├── portalinmo_scraper.py
 │   ├── add_addresses.py
 │   └── ...
@@ -80,14 +79,14 @@ Proyecto/
 ├── Web/                    # Archivos para GitHub Pages
 │
 ├── README.md               # Este archivo
-└── requirements.txt        # Dependencias del proyecto
+└── requirements.txt        # Lista de dependencias 
+
 ```
 
 ---
 
 ## Instalación y Requisitos
 
-Para ejecutar este proyecto localmente se requiere Python 3.8 o superior.
 
 ### 1. Clonar el repositorio
 
@@ -98,36 +97,44 @@ cd PROYECTOIMT2200
 
 ### 2. Instalar dependencias
 
-Se recomienda usar un entorno virtual.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**Librerías principales:** pandas, numpy, scikit-learn, geopy, joblib, matplotlib, seaborn, selenium, beautifulsoup4, tqdm.
+**Las librerías principales utilizadas son:**
+
+* **Análisis y Modelamiento:** `pandas`, `numpy`, `scikit-learn`, `geopy`, `joblib`.
+* **Visualización:** `matplotlib`, `seaborn`.
+* **Web Scraping:** `selenium` (Automatización de navegador), `beautifulsoup4` (Parsing HTML), `tqdm`.
 
 ---
 
 ## Uso y Ejecución
 
-1. **Scraping:** scripts en `Src/`.
-2. **Preprocesamiento:** `agregacion_lat_lon_data.ipynb`.
-3. **Modelamiento:** Notebooks en `Notebooks/REGRESION/`.
+El flujo de trabajo completo se encuentra distribuido en las carpetas `Notebooks/` y `Src/`.
+
+1.  **Scraping y Datos:** Los scripts en `Src/` (`portalinmo_scraper.py`) se encargan de la obtención de datos crudos.
+2.  **Preprocesamiento:** El notebook `Notebooks/agregacion_lat_lon_data.ipynb` gestiona la geocodificación.
+3.  **Análisis y Modelo:**
+      * Navegue a la carpeta `Notebooks/REGRESION/`.
+      * Ejecute el notebook principal de modelamiento para entrenar el regresor y generar las predicciones.
 
 ---
 
 ## Equipo y Roles
 
-| Integrante             | Rol / Responsabilidad    |
-| ---------------------- | ------------------------ |
-| **Javier Cuitiño**     | Co-autor y desarrollador |
-| **Simón Saravia**      | Co-autor y desarrollador |
-| **Alejandro Orellana** | Co-autor y desarrollador |
-
+| Integrante | Rol / Responsabilidad |
+|------------|-----------------------|
+| **Javier Cuitiño** | **Co-Autor y Desarrollador:** Desarrollo de código, análisis de datos y documentación. |
+| **Simón Saravia** | **Co-Autor y Desarrollador:** Desarrollo de código, análisis de datos y documentación. |
+| **Alejandro Orellana** | **Co-Autor y Desarrollador:** Desarrollo de código, análisis de datos y documentación. |
 ---
 
 ## Declaración de uso de IA
 
-Se utilizaron herramientas de IA generativa para apoyar la creación de scripts de scraping, funciones auxiliares y lógica de geolocalización.
+
+  * Se utilizaron herramientas de Inteligencia Artificial Generativa (ChatGPT/Gemini) para generar los códigos de **web scraping**, los **scripts auxiliares** y para implementar la lógica de **geolocalización** de las propiedades.
+  
 
 ---
