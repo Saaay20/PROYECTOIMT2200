@@ -1,4 +1,4 @@
-# 🏡 Análisis Exploratorio de Datos: Mercado de Viviendas en Santiago
+# Análisis Exploratorio de Datos: Mercado de Viviendas en Santiago
 
 Este proyecto corresponde a la **Entrega Inicial del Repositorio** y tiene como objetivo realizar un
 **Análisis Exploratorio de Datos (EDA)** sobre un conjunto de viviendas en la Región Metropolitana,
@@ -6,7 +6,7 @@ obtenido desde portales inmobiliarios.
 
 ---
 
-## 📋 Objetivos
+## Objetivos
 
 1. Comprender la estructura del dataset y sus principales variables.
 2. Identificar los factores que más influyen en el precio de las viviendas.
@@ -16,7 +16,7 @@ obtenido desde portales inmobiliarios.
 
 ---
 
-## 🧾 Dataset utilizado
+## Dataset utilizado
 
 **Archivo:** `Dataset_viviendas_final.csv`
 
@@ -33,7 +33,7 @@ obtenido desde portales inmobiliarios.
 
 ---
 
-## ⚙️ Metodología
+##  Metodología
 
 1. **Limpieza de datos:**  
    - Eliminación de valores nulos y ceros en columnas críticas.  
@@ -51,7 +51,7 @@ obtenido desde portales inmobiliarios.
 
 ---
 
-## 📊 Principales hallazgos
+## Principales hallazgos
 
 - Alta **heterogeneidad del mercado inmobiliario**: coeficiente de variación ≈ 85%.
 - Comunas del oriente (Vitacura, Lo Barnechea, Las Condes) presentan precios por m² más altos.
@@ -61,7 +61,7 @@ obtenido desde portales inmobiliarios.
 
 ---
 
-## 💻 Requisitos técnicos
+## Requisitos técnicos
 
 El notebook fue desarrollado en **Python 3.11** con las siguientes librerías:
 ```bash

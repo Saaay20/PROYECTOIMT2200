@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+geopy
+joblib
+selenium
+beautifulsoup4
+tqdm
