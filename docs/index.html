@@ -3,246 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Tasación Inmobiliaria | Grupo 23</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Tasación Inmobiliaria Automatizada - Grupo 23</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos Generales */
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --hover-color: #2980b9;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-color);
+            line-height: 1.6;
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f9f9f9;
         }
 
-        /* Encabezado */
-        header {
-            background: var(--primary-color);
+        /* Navegación */
+        nav {
+            background: var(--primary);
             color: white;
-            padding: 3rem 1rem;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 4rem 1rem;
+            margin-bottom: 2rem;
         }
 
         header h1 {
-            margin: 0;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
-            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         header p {
-            margin-top: 10px;
             font-size: 1.2rem;
             font-weight: 300;
-            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* Contenedor Principal */
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 0 20px;
-            flex: 1;
         }
 
-        .grid {
+        /* Secciones */
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+        }
+
+        /* Estilos para Visualizaciones */
+        .viz-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        /* Tarjetas Interactivas */
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        .viz-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            transition: transform 0.3s;
         }
 
-        .card:hover {
+        .viz-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .card-header {
-            background: var(--accent-color);
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
-
-        .card-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .card-header i {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .viz-card img {
+            width: 100%;
+            height: auto;
             display: block;
         }
 
-        .card-body {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-body p {
-            line-height: 1.6;
+        .viz-caption {
+            padding: 15px;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 20px;
+            background: #fff;
+            border-top: 1px solid #eee;
         }
 
-        .btn {
+        /* Métricas y Resultados */
+        .metrics-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .metric-box {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        /* Botones de Descarga */
+        .download-btn {
             display: inline-block;
-            background: var(--accent-color);
+            background: var(--primary);
             color: white;
             padding: 10px 20px;
-            border-radius: 25px;
-            text-align: center;
-            font-weight: bold;
-            transition: background 0.2s;
-            align-self: flex-start;
-        }
-
-        .card:hover .btn {
-            background: var(--hover-color);
-        }
-
-        /* Sección de Documentos PDF */
-        .docs-section {
-            margin-top: 60px;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .docs-section h3 {
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .docs-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .docs-list li {
-            margin: 15px 0;
-        }
-
-        .docs-list a {
-            color: var(--primary-color);
+            border-radius: 5px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: color 0.2s;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
         }
 
-        .docs-list a:hover {
-            color: var(--accent-color);
+        .download-btn:hover {
+            background: var(--secondary);
         }
 
-        .docs-list span {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            color: #888;
-            font-size: 0.9rem;
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 3rem;
         }
 
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .metrics-container { flex-direction: column; }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#problema">El Problema</a></li>
+            <li><a href="#metodologia">Metodología (Scraping)</a></li>
+            <li><a href="#eda">Análisis (EDA)</a></li>
+            <li><a href="#modelo">Modelo y Resultados</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+        </ul>
+    </nav>
+
+    <header id="inicio">
         <h1>Tasación Inmobiliaria Automatizada</h1>
-        <p>Proyecto de Ciencia de Datos | IMT2200</p>
+        <p>Un enfoque de Ciencia de Datos para predecir el valor de mercado de propiedades en la Región Metropolitana utilizando Web Scraping y Machine Learning.</p>
     </header>
 
     <div class="container">
-        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem;">
-            Bienvenido al portafolio digital del <strong>Grupo 23</strong>. A continuación, puedes navegar interactivamente por las etapas clave de nuestro proyecto: desde el análisis exploratorio de los datos hasta la implementación del modelo de predicción.
-        </p>
 
-        <div class="grid">
-            <a href="notebook_eda.html" class="card">
-                <div class="card-header">
-                    <i class="fas fa-chart-pie"></i>
-                    <h2>Análisis Exploratorio (EDA)</h2>
-                </div>
-                <div class="card-body">
-                    <p>Descubre cómo se distribuyen los precios en la Región Metropolitana, las correlaciones entre variables y la limpieza de datos geoespaciales.</p>
-                    <span class="btn">Ver Análisis</span>
-                </div>
-            </a>
+        <section id="problema">
+            <h2><i class="fas fa-question-circle"></i> Contexto y Motivación</h2>
+            <p>
+                La compra-venta de viviendas exige un valor de referencia objetivo. [cite_start]Actualmente, obtener una tasación precisa es lento o costoso[cite: 16]. 
+                [cite_start]Nuestro proyecto busca <strong>automatizar esta tasación</strong> aprovechando la información pública disponible en portales inmobiliarios[cite: 18].
+            </p>
+            <h3>Objetivo</h3>
+            <p>
+                [cite_start]Construir una herramienta capaz de estimar el precio de mercado (en UF) de una propiedad basándose en sus atributos (superficie, ubicación, características) y encontrar bienes comparables[cite: 22, 23].
+            </p>
+        </section>
 
-            <a href="programa_tasacion.html" class="card">
-                <div class="card-header">
-                    <i class="fas fa-robot"></i>
-                    <h2>Modelo de Tasación</h2>
-                </div>
-                <div class="card-body">
-                    <p>Explora el pipeline de Machine Learning, la ingeniería de características y la función de tasación final que predice el valor en UF.</p>
-                    <span class="btn">Ver Modelo</span>
-                </div>
-            </a>
-        </div>
+        <section id="metodologia">
+            <h2><i class="fas fa-robot"></i> Adquisición de Datos (Web Scraping)</h2>
+            <p>
+                Para construir nuestro dataset, implementamos un proceso de extracción automatizada desde <em>PortalInmobiliario.com</em>.
+                El flujo de trabajo consistió en:
+            </p>
+            <ol>
+                [cite_start]<li><strong>Scraping Masivo:</strong> Extracción de datos separados para Casas y Departamentos[cite: 92].</li>
+                [cite_start]<li><strong>Geocodificación:</strong> Debido a la falta de coordenadas exactas, implementamos un script adicional que recorrió cada URL para extraer la dirección precisa y convertirla en Latitud/Longitud[cite: 44, 92].</li>
+                [cite_start]<li><strong>Limpieza:</strong> Unificación de datasets, eliminación de valores nulos, corrección de unidades monetarias y filtrado de outliers[cite: 822].</li>
+            </ol>
+            <div class="metric-box" style="background: #e8f6f3; border-left: 5px solid #1abc9c;">
+                [cite_start]<p><strong>Desafío Técnico:</strong> Se descartaron variables ruidosas como el "título de la publicación" para centrarse puramente en las coordenadas geográficas y atributos físicos[cite: 823].</p>
+            </div>
+        </section>
 
-        <div class="docs-section">
-            <h3>📄 Documentación Formal</h3>
-            <ul class="docs-list">
-                <li>
-                    <a href="Actualización_Final_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
-                        <span>📂</span> Informe Final del Proyecto (PDF)
-                    </a>
+        <section id="eda">
+            <h2><i class="fas fa-chart-bar"></i> Análisis Exploratorio de Datos (EDA)</h2>
+            <p>
+                Antes de modelar, analizamos la distribución de precios y las correlaciones. [cite_start]Descubrimos una alta dispersión en los precios, explicada fuertemente por la ubicación (comuna) más que solo por el tamaño[cite: 84].
+            </p>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <img src="../Figures/boxplot_precio_uf_por_comuna.png" alt="Distribución de precios por comuna">
+                    <div class="viz-caption">
+                        <strong>Distribución de Precios por Comuna:</strong> Se observa la variabilidad del valor UF según el sector geográfico.
+                    </div>
+                </div>
+
+                <div class="viz-card">
+                    <img src="../Figures/matriz_correlacion.png" alt="Matriz de Correlación">
+                    <div class="viz-caption">
+                        <strong>Matriz de Correlación:</strong> Identificación de las variables que más influyen en el precio final.
+                    </div>
+                </div>
+
+                <div class="viz-card">
+                    <img src="../Figures/distribucion_precio_por_m2_construido.png" alt="Precio vs M2">
+                    <div class="viz-caption">
+                        <strong>Precio vs. M2 Construidos:</strong> Relación directa entre superficie y valor de mercado.
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px;">
+                <a href="notebook_eda.html" class="download-btn"><i class="fas fa-laptop-code"></i> Ver Notebook de Análisis Completo</a>
+            </p>
+        </section>
+
+        <section id="modelo">
+            <h2><i class="fas fa-brain"></i> Modelamiento y Resultados</h2>
+            <p>
+                Utilizamos una <strong>Regresión Lineal Múltiple</strong> para predecir el precio. El modelo fue entrenado y validado con un set de datos separado.
+            </p>
+
+            <div class="metrics-container">
+                <div class="metric-box">
+                    <span class="metric-value">0.90</span>
+                    <span class="metric-label">R² (Coeficiente de Determinación)</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">92-99%</span>
+                    <span class="metric-label">Precisión en Casas</span>
+                </div>
+            </div>
+
+            <h3>Visualización de la Regresión</h3>
+            <div class="viz-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                <div class="viz-card">
+                    <img src="../Figures/dispersion_precios_muestra.png" alt="Predicción vs Realidad">
+                    <div class="viz-caption">
+                        <strong>Predicción vs. Valor Real:</strong> La línea roja representa la predicción perfecta. Los puntos azules muestran el desempeño de nuestro modelo. Se observa un ajuste muy preciso para la mayoría de los casos.
+                    </div>
+                </div>
+            </div>
+
+            <h3>Conclusiones Clave</h3>
+            <ul>
+                [cite_start]<li><strong>Éxito en Casas:</strong> El modelo es altamente confiable para estimar el valor de casas, superando incluso a algunas herramientas comerciales[cite: 831].</li>
+                <li><strong>Desafío en Departamentos:</strong> El rendimiento fue menor en departamentos. [cite_start]Esto se debe a la falta de variables verticales (piso, orientación, gastos comunes) que no fueron capturadas en el scraping inicial[cite: 816, 817].</li>
+                [cite_start]<li><strong>Comparables:</strong> Se validó que el uso de KNN es efectivo para encontrar propiedades similares ("vecinos cercanos")[cite: 833].</li>
+            </ul>
+
+            <p style="margin-top: 20px;">
+                <a href="programa_tasacion.html" class="download-btn"><i class="fas fa-cogs"></i> Ver Código del Modelo</a>
+            </p>
+        </section>
+
+        <section id="documentacion">
+            <h2><i class="fas fa-file-pdf"></i> Informes del Proyecto</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;">
+                    <a href="Entrega_Inicial_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: bold;">
+                        <i class="fas fa-file-download"></i> Entrega Inicial (PDF)
+                    </a> - Definición del problema y primer análisis.
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <a href="Actualización_Final_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: bold;">
+                        <i class="fas fa-file-download"></i> Informe Final (PDF)
+                    </a> - Resultados detallados y conclusiones.
                 </li>
                 <li>
-                    <a href="Entrega_Inicial_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
-                        <span>📂</span> Entrega Inicial (PDF)
-                    </a>
-                </li>
-                <li>
-                    <a href="PDF Propuesta Proyecto IMT2220.pdf" target="_blank">
-                        <span>📂</span> Propuesta de Proyecto (PDF)
+                    <a href="PDF Propuesta Proyecto IMT2220.pdf" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: bold;">
+                        <i class="fas fa-file-download"></i> Propuesta Original (PDF)
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
+
     </div>
 
-    <footer>
+    <footer id="equipo">
+        <h3>Grupo 23 - IMT2200</h3>
+        <p>
+            <strong>Javier Cuitiño</strong> (Desarrollo y Modelamiento) | 
+            <strong>Alejandro Orellana</strong> (Ingeniería de Datos) | 
+            <strong>Simón Saravia</strong> (Análisis y Comunicación)
+        </p>
         <p>Pontificia Universidad Católica de Chile - 2025</p>
-        <p>Desarrollado por Javier Cuitiño, Simón Saravia y Alejandro Orellana</p>
+        <p><a href="https://github.com/Saaay20/PROYECTOIMT2200" style="color: #ecf0f1;">Ver Repositorio en GitHub</a></p>
     </footer>
 
 </body>
