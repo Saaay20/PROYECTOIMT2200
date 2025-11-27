@@ -3,473 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasación Inmobiliaria Automatizada - Grupo 23</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Tasación Automática de Propiedades | Grupo 23</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --success: #27ae60;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            margin: 0;
-            background-color: #fff;
-        }
-
-        /* Navegación */
-        nav {
-            background: var(--primary);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-wrap: wrap;
-        }
-
-        nav a {
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?city,architecture'); 
+            /* Si quieres una imagen de fondo propia, cambia la URL de arriba */
+            background-size: cover;
+            background-position: center;
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            margin: 0 15px;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover { color: var(--secondary); }
-
-        /* Hero Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
+            padding: 100px 0;
             text-align: center;
-            padding: 6rem 1rem;
-            margin-bottom: 3rem;
         }
-
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            margin: 0 0 1rem 0;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: 1.4rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            margin-bottom: 5rem;
-            scroll-margin-top: 80px; /* Para que el link no quede tapado por el nav */
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary);
-            font-size: 2.2rem;
-            border-left: 6px solid var(--secondary);
-            padding-left: 15px;
-            margin-bottom: 2rem;
-        }
-
-        h3 {
-            color: var(--dark);
-            font-size: 1.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p, li { color: #555; font-size: 1.1rem; }
-
-        /* Video Section */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            background: #000;
-            margin: 2rem 0;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Cajas de Texto Destacado */
-        .highlight-box {
-            background: #f1f8ff;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 20px 0;
-            border-left: 5px solid var(--secondary);
-        }
-
-        .alert-box {
-            background: #fff5f5;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 20px 0;
-            border-left: 5px solid var(--accent);
-        }
-
-        /* Métricas */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 3rem 0;
-        }
-
-        .metric-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--success);
-        }
-
-        .metric-value {
-            display: block;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .metric-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; color: #777; }
-
-        /* Galería */
-        .viz-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
-            margin-top: 2rem;
-        }
-
-        .viz-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .viz-card:hover { transform: translateY(-5px); }
-
-        .viz-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid #eee;
-        }
-
-        .viz-info { padding: 25px; }
-        .viz-info h4 { margin: 0 0 15px 0; color: var(--primary); font-size: 1.3rem; }
-
-        /* Documentos */
-        .docs-list { list-style: none; padding: 0; }
-        .docs-list li { margin-bottom: 15px; }
-        .docs-list a {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .docs-list a:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            color: var(--secondary);
-        }
-        .docs-list i { font-size: 2rem; margin-right: 20px; color: var(--accent); }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-            margin-top: 5rem;
-        }
-        footer a { color: var(--secondary); text-decoration: none; font-weight: bold; }
-
-        @media (max-width: 768px) {
-            header { padding: 4rem 1rem; }
-            header h1 { font-size: 2.5rem; }
-            .viz-grid { grid-template-columns: 1fr; }
-        }
+        .feature-icon { font-size: 2rem; color: #0d6efd; margin-bottom: 1rem; }
+        .card { border: none; shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .viz-img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; }
+        .section-padding { padding: 60px 0; }
+        .bg-white { background-color: white; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#video">Video</a></li>
-            <li><a href="#contexto">Contexto</a></li>
-            <li><a href="#metodologia">Metodología</a></li>
-            <li><a href="#eda">Análisis</a></li>
-            <li><a href="#resultados">Resultados</a></li>
-            <li><a href="#conclusiones">Conclusiones</a></li>
-            <li><a href="#docs">Informes</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">IMT2220 - Grupo 23</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#proyecto">El Proyecto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#desafios">Desafíos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#visualizaciones">Visualizaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#notebooks">Ver Notebooks</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <header id="inicio">
-        <h1>Tasación Inmobiliaria Automatizada</h1>
-        <p>Predicción de valor de mercado en la Región Metropolitana mediante Ciencia de Datos.</p>
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Tasación Automática de Propiedades</h1>
+            <p class="lead mb-4">Un enfoque de Data Science para valorar el mercado inmobiliario en la Región Metropolitana.</p>
+            <p class="fst-italic">Por: Javier Cuitiño, Simón Saravia, Alejandro Orellana</p>
+            <a href="#notebooks" class="btn btn-primary btn-lg mt-3">Ver Análisis Completo</a>
+        </div>
     </header>
 
-    <div class="container">
-
-        <section id="video">
-            <h2>Video de Presentación</h2>
-            <p>
-                En este video de 10 minutos, el equipo resume los principales hallazgos del proyecto, destacando las motivaciones, 
-                las decisiones metodológicas clave y las conclusiones más relevantes sobre el mercado inmobiliario en Santiago.
-            </p>
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Presentación Final Proyecto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <section id="proyecto" class="section-padding bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Objetivo e Impacto</h2>
+                    <p class="lead">¿Es posible predecir el valor de una propiedad automáticamente?</p>
+                    <p>La compra-venta de viviendas exige un valor de referencia objetivo. Nuestro proyecto busca automatizar esta tasación aprovechando la información pública disponible en portales inmobiliarios.</p>
+                    <p>Utilizando técnicas de <strong>Web Scraping</strong>, <strong>Geolocalización</strong> y modelos de <strong>Regresión Lineal</strong>, logramos construir una herramienta capaz de estimar precios de mercado basándose en atributos clave como superficie, ubicación y características estructurales.</p>
+                    <div class="alert alert-success mt-3">
+                        <i class="bi bi-check-circle-fill"></i> <strong>Resultado Clave:</strong> Nuestro modelo para casas alcanzó un <strong>R² de 0.9</strong>, con una precisión del 92% al 99% en pruebas.
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="precio_promedio_por_tipo_vivienda.png" alt="Precio Promedio por Tipo de Vivienda" class="img-fluid rounded shadow">
+                    <p class="text-muted text-center mt-2 small">Comparación inicial de precios promedio (UF) por tipo de vivienda.</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contexto">
-            <h2>1. Contexto y Motivación</h2>
-            <p>
-                La compra-venta de viviendas es una decisión financiera crítica que a menudo carece de transparencia. 
-                [cite_start]Tanto compradores como vendedores enfrentan la dificultad de establecer un precio justo en un mercado dinámico y disperso[cite: 10].
-            </p>
-            <div class="highlight-box">
-                <strong>Nuestra Misión:</strong> Automatizar el proceso de tasación utilizando información pública disponible en portales inmobiliarios, 
-                [cite_start]para entregar un valor de referencia objetivo, rápido y basado en datos reales[cite: 12].
-            </div>
-            <h3>Preguntas de Investigación</h3>
-            <p>El proyecto buscó responder interrogantes fundamentales sobre el mercado:</p>
-            <ul>
-                <li>¿Es posible predecir el valor de una propiedad solo con sus características físicas y ubicación?</li>
-                <li>¿Cuáles son las variables que más influyen en el precio final (UF)?</li>
-                <li>¿Qué tan dispersos son los precios dentro de una misma comuna?</li>
-                [cite_start]<li>¿Podemos identificar bienes comparables ("vecinos cercanos") de manera automática?[cite: 23, 81]</li>
-            </ul>
-        </section>
-
-        <section id="metodologia">
-            <h2>2. Metodología: Del Caos al Dato Estructurado</h2>
-            <p>
-                Para construir nuestro modelo, implementamos un flujo de trabajo riguroso de Ingeniería de Datos. 
-                [cite_start]La recolección se realizó mediante <strong>Web Scraping</strong> desde <em>PortalInmobiliario.com</em>, extrayendo inicialmente dos datasets separados: Casas y Departamentos[cite: 42].
-            </p>
-
-            <h3>El Desafío de la Geolocalización</h3>
-            <p>
-                Uno de los mayores retos técnicos fue la falta de coordenadas precisas en los anuncios. Para solucionar esto, desarrollamos un script de 
-                <strong>geocodificación</strong> que procesó cada dirección textual para obtener su Latitud y Longitud exactas. Esto nos permitió calcular una nueva variable crítica: 
-                [cite_start]<em>la distancia a centros de interés</em>, enriqueciendo significativamente el modelo[cite: 821].
-            </p>
-
-            <h3>Limpieza y Preparación</h3>
-            <ul>
-                [cite_start]<li><strong>Filtrado de Ruido:</strong> Se eliminaron publicaciones con precios inconsistentes (ej. arriendos mezclados con ventas) o unidades monetarias erróneas[cite: 822].</li>
-                [cite_start]<li><strong>Selección de Variables:</strong> Descartamos el texto libre (descripciones) para enfocarnos puramente en atributos cuantitativos y geográficos, reduciendo la subjetividad[cite: 823].</li>
-                <li><strong>Unificación:</strong> Integramos todo en un gran dataset maestro listo para el modelamiento.</li>
-            </ul>
-        </section>
-
-        <section id="eda">
-            <h2>3. Análisis Exploratorio de Datos (EDA)</h2>
-            <p>Antes de predecir, necesitamos entender. Nuestro análisis visual reveló patrones claros en el mercado inmobiliario de Santiago.</p>
-
-            <div class="viz-grid">
-                <div class="viz-card">
-                    <img src="Figures/matriz_correlacion.png" alt="Matriz de Correlación">
-                    <div class="viz-info">
-                        <h4>¿Qué mueve el precio?</h4>
-                        <p>
-                            El mapa de calor confirma lo esperado: la <strong>superficie construida</strong> tiene la correlación más fuerte con el precio. 
-                            Sin embargo, la cantidad de baños resultó ser un predictor más fuerte que los dormitorios, sugiriendo que el estándar de terminaciones importa.
-                        </p>
+    <section id="desafios" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">El Camino de los Datos: Obstáculos y Soluciones</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center">
+                        <i class="bi bi-building-exclamation feature-icon"></i>
+                        <h4>El Problema de los Departamentos</h4>
+                        <p>Inicialmente intentamos tasar todo tipo de propiedades. Sin embargo, descubrimos que para los departamentos faltaban variables críticas (orientación, piso, gastos comunes) que no siempre están en la descripción pública.</p>
+                        <hr>
+                        <p class="small text-muted"><strong>Solución:</strong> Enfocamos el modelo principal en <em>Casas</em>, donde logramos alta precisión, y documentamos la necesidad de un scraping específico para departamentos en futuras iteraciones.</p>
                     </div>
                 </div>
-
-                <div class="viz-card">
-                    <img src="Figures/boxplot_precio_uf_por_comuna.png" alt="Precios por Comuna">
-                    <div class="viz-info">
-                        <h4>La Desigualdad Geográfica</h4>
-                        <p>
-                            Este gráfico es revelador: muestra la enorme brecha de precios entre comunas. Vitacura y Lo Barnechea no solo tienen medianas más altas, 
-                            [cite_start]sino una <strong>dispersión extrema</strong> (cajas muy largas), lo que indica un mercado heterogéneo con propiedades de lujo que distorsionan el promedio[cite: 34].
-                        </p>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center">
+                        <i class="bi bi-geo-alt feature-icon"></i>
+                        <h4>Ubicación vs. Dirección</h4>
+                        <p>Las direcciones escritas manualmente tenían formatos inconsistentes y mucho "ruido", lo que dificultaba agrupar propiedades comparables.</p>
+                        <hr>
+                        <p class="small text-muted"><strong>Solución:</strong> Implementamos un proceso de geolocalización para convertir direcciones en coordenadas (Latitud/Longitud). El modelo final trabaja con coordenadas puras para reducir la variabilidad irrelevante.</p>
                     </div>
                 </div>
-
-                <div class="viz-card">
-                    <img src="Figures/distribucion_precio_por_m2_construido.png" alt="Precio vs M2">
-                    <div class="viz-info">
-                        <h4>El Valor del Espacio</h4>
-                        <p>
-                            La relación es lineal y positiva, pero la pendiente cambia según la comuna. En sectores periféricos, el precio por m² se mantiene más estable; 
-                            en el sector oriente, cada metro adicional dispara el valor exponencialmente.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="viz-card">
-                    <img src="Figures/precio_promedio_segun_amenidades.png" alt="Amenidades">
-                    <div class="viz-info">
-                        <h4>El Efecto de los "Extras"</h4>
-                        <p>
-                            Propiedades con piscina y quincho muestran consistentemente un precio base superior. Esto valida la importancia de incluir estas variables binarias en nuestro modelo predictivo.
-                        </p>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center">
+                        <i class="bi bi-currency-exchange feature-icon"></i>
+                        <h4>Datos Sucios y "En Verde"</h4>
+                        <p>Encontramos precios mezclados (pesos vs UF), outliers extremos y proyectos "en verde" que distorsionaban los valores de mercado real de la zona.</p>
+                        <hr>
+                        <p class="small text-muted"><strong>Solución:</strong> Realizamos una limpieza exhaustiva eliminando outliers y estandarizando unidades monetarias. Filtramos registros con unidades inconsistentes para proteger la calidad de la regresión.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="resultados">
-            <h2>4. Resultados del Modelo Predictivo</h2>
-            <p>
-                Entrenamos un modelo de <strong>Regresión Lineal Múltiple</strong>, validado con un conjunto de prueba (Test Set) para asegurar su capacidad de generalización.
-                Los resultados fueron sorprendentemente positivos, especialmente para el segmento de casas.
-            </p>
-
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <span class="metric-value">0.90</span>
-                    <span class="metric-label">R² (Coef. Determinación)</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">99%</span>
-                    <span class="metric-label">Precisión Máxima (Casas)</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">KNN</span>
-                    <span class="metric-label">Algoritmo de Comparables</span>
-                </div>
-            </div>
-
-            <div class="viz-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
-                <div class="viz-card">
-                    <img src="Figures/dispersion_precios_muestra.png" alt="Dispersión Predicción vs Real">
-                    <div class="viz-info">
-                        <h4>La Prueba de Fuego: Predicción vs. Realidad</h4>
-                        <p>
-                            En este gráfico, la línea roja representa la perfección (donde la predicción iguala al precio real). 
-                            La nube de puntos azules se ajusta firmemente a esta línea, lo que demuestra la <strong>alta fiabilidad</strong> de nuestro modelo.
-                            [cite_start]Las desviaciones se concentran principalmente en los extremos (propiedades muy baratas o mansiones de lujo), donde el comportamiento del mercado es menos predecible[cite: 830].
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Hallazgo Clave: La Brecha Casa-Departamento</h3>
-            <div class="highlight-box">
-                <p>
-                    Mientras que el modelo para <strong>Casas</strong> alcanzó una precisión excepcional (comparable a herramientas profesionales como Propiteq), 
-                    el desempeño en <strong>Departamentos</strong> fue inferior.
-                </p>
-                <p>
-                    <strong>¿La razón?</strong> Descubrimos que el valor de un departamento depende de variables verticales que no pudimos capturar: 
-                    <em>número de piso, orientación (Norte/Sur) y vista</em>. [cite_start]Estas "variables invisibles" son la principal limitación actual del modelo[cite: 816, 817].
-                </p>
-            </div>
-        </section>
-
-        <section id="conclusiones">
-            <h2>5. Conclusiones y Trabajo Futuro</h2>
-            <ul>
-                [cite_start]<li><strong>Factibilidad Técnica:</strong> Confirmamos que es totalmente posible automatizar la tasación inmobiliaria con datos públicos, logrando resultados útiles para el usuario común[cite: 832].</li>
-                [cite_start]<li><strong>Identificación de Comparables:</strong> Validamos que el algoritmo <strong>KNN (K-Nearest Neighbors)</strong> es efectivo para encontrar propiedades similares, respondiendo a una de nuestras preguntas iniciales de investigación[cite: 833].</li>
-                <li><strong>Limitaciones de Datos:</strong> En comunas con poca oferta (menos de 100 avisos), el modelo pierde robustez. [cite_start]Además, los precios de venta "en verde" (futuros) pueden distorsionar las estimaciones actuales[cite: 836, 837].</li>
-            </ul>
-            <p>
-                <strong>Próximos Pasos:</strong> Para una versión 2.0, proponemos integrar variables de entorno más complejas (índices de delincuencia, calidad del aire) 
-                y mejorar el scraping para capturar el "piso" y la "orientación" en edificios de departamentos.
-            </p>
-        </section>
-
-        <section id="docs">
-            <h2>Documentación Detallada</h2>
-            <p>Para profundizar en los aspectos técnicos, matemáticos y metodológicos, invitamos a revisar los informes oficiales:</p>
-            <ul class="docs-list">
-                <li>
-                    <a href="Actualización_Final_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
-                        <i class="fas fa-file-pdf"></i>
-                        <div>
-                            <strong>Informe Final y Resultados</strong><br>
-                            <small>Análisis completo del modelo, métricas de error y discusión detallada de hallazgos.</small>
+    <section id="visualizaciones" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Análisis Exploratorio de Datos (EDA)</h2>
+            <p class="text-center mb-5 w-75 mx-auto">Estas visualizaciones fueron fundamentales para entender la distribución del mercado y las correlaciones entre variables antes de entrenar nuestros modelos.</p>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="matriz_correlacion.png" class="card-img-top viz-img" alt="Matriz de Correlación">
+                        <div class="card-body">
+                            <h5 class="card-title">Matriz de Correlación</h5>
+                            <p class="card-text">Identificamos qué variables tienen mayor impacto lineal en el precio final. Observamos fuertes relaciones entre superficie construida y valor.</p>
                         </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="Entrega_Inicial_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
-                        <i class="fas fa-file-contract"></i>
-                        <div>
-                            <strong>Entrega Inicial (Metodología)</strong><br>
-                            <small>Detalle del proceso de Web Scraping, limpieza de datos y definición de variables.</small>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="PDF Propuesta Proyecto IMT2220.pdf" target="_blank">
-                        <i class="fas fa-lightbulb"></i>
-                        <div>
-                            <strong>Propuesta de Investigación</strong><br>
-                            <small>Planteamiento original del problema, motivación y objetivos del estudio.</small>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </section>
+                    </div>
+                </div>
 
-    </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="distribucion_precio_por_m2_construido.png" class="card-img-top viz-img" alt="Distribución Precio m2">
+                        <div class="card-body">
+                            <h5 class="card-title">Distribución del Precio por m²</h5>
+                            <p class="card-text">Análisis de la densidad de precios. Esto nos ayudó a detectar la asimetría de los datos y la presencia de propiedades de lujo como outliers.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <footer>
-        <p><strong>IMT2200 - Introducción a la Ciencia de Datos</strong></p>
-        <p>Javier Cuitiño | Simón Saravia | Alejandro Orellana</p>
-        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Pontificia Universidad Católica de Chile - 2025</p>
-        <p style="margin-top: 20px;"><a href="https://github.com/Saaay20/PROYECTOIMT2200" target="_blank"><i class="fab fa-github"></i> Ver Código en GitHub</a></p>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <img src="relacion_precio_vs_m2_totales.png" class="img-fluid rounded-start viz-img" alt="Scatter Plot Precio vs M2">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Relación Precio vs. Superficie</h5>
+                                    <p class="card-text">La dispersión muestra una clara tendencia positiva, aunque con varianza creciente a mayor metraje (heteroscedasticidad), típica del mercado inmobiliario.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="notebooks" class="section-padding bg-dark text-white text-center">
+        <div class="container">
+            <h2 class="mb-5">Explora el Código y los Resultados Detallados</h2>
+            <div class="row justify-content-center gap-4">
+                <div class="col-md-5">
+                    <div class="d-grid gap-2">
+                        <a href="notebook_eda.html" class="btn btn-outline-info btn-lg py-4">
+                            <i class="bi bi-bar-chart-fill me-2"></i> Ver Notebook de Análisis (EDA)
+                            <div class="small mt-2 text-light">Limpieza, exploración visual y estadísticas descriptivas.</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="d-grid gap-2">
+                        <a href="programa_tasacion.html" class="btn btn-success btn-lg py-4">
+                            <i class="bi bi-code-slash me-2"></i> Ver Programa de Tasación
+                            <div class="small mt-2 text-light">Modelo de Regresión, KNN y predicción final.</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-black text-white-50 text-center">
+        <div class="container">
+            <p class="mb-0">Pontificia Universidad Católica de Chile | Instituto de Ingeniería Matemática y Computacional</p>
+            <small>IMT2220 Introducción a Ciencia de Datos - Noviembre 2025</small>
+        </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
