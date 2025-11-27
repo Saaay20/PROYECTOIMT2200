@@ -13,7 +13,7 @@
         .hero {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 100px 0;
+            padding: 80px 0;
             margin-bottom: 0;
         }
         .section-padding { padding: 60px 0; }
@@ -82,35 +82,35 @@
     <section id="metodologia" class="section-padding bg-light-gray">
         <div class="container">
             <h2 class="text-center">Metodología y Proceso ETL</h2>
-            <p class="text-center mb-5 text-muted">Construcción del Dataset: Del dato crudo a la información útil.</p>
+            <p class="text-center mb-5 text-muted">Documentación del flujo de datos desde la extracción hasta el modelo.</p>
             
             <div class="row g-4 text-center">
                 <div class="col-md-3">
                     <div class="card card-custom p-4">
                         <div class="icon-box"><i class="bi bi-cloud-download"></i></div>
                         <h5>1. Web Scraping</h5>
-                        <p class="small">Extracción automatizada desde <em>portalinmobiliario.com</em>. Se generaron datasets diferenciados para casas y departamentos.</p>
+                        <p class="small">Extracción automatizada de datos desde <em>portalinmobiliario.com</em>. Se generaron datasets conteniendo estas viviendas y sus respectivas característica.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card card-custom p-4">
                         <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
                         <h5>2. Geolocalización</h5>
-                        <p class="small">Script personalizado que convirtió direcciones textuales inexactas en coordenadas precisas (Latitud/Longitud) iterando URL por URL.</p>
+                        <p class="small">Implementación de un proceso para convertir direcciones textuales en coordenadas precisas (Latitud/Longitud) para reducir el ruido.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card card-custom p-4">
                         <div class="icon-box"><i class="bi bi-funnel"></i></div>
                         <h5>3. Limpieza (ETL)</h5>
-                        <p class="small">Eliminación de outliers extremos, estandarización de divisas (CLP a UF) y limpieza de valores nulos o inconsistentes.</p>
+                        <p class="small">Eliminación de outliers, normalización de unidades monetarias (Pesos a UF) y limpieza de registros con datos faltantes o inconsistentes.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card card-custom p-4">
                         <div class="icon-box"><i class="bi bi-cpu"></i></div>
-                        <h5>4. Preparación</h5>
-                        <p class="small">Concatenación de bases de datos y selección de "features" relevantes (Superficie, ubicación, amenidades) para el entrenamiento.</p>
+                        <h5>4. Modelado</h5>
+                        <p class="small">Uso de <strong>Regresión Lineal</strong> para la predicción de precios.</p>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
         <div class="container">
             <h2 class="text-center mb-4">Análisis Exploratorio de Datos (EDA)</h2>
             <p class="text-center w-75 mx-auto mb-5 text-muted">
-                Antes de modelar, realizamos una exploración visual para entender la distribución del mercado, validar hipótesis y detectar patrones ocultos.
+                Antes de entrenar el modelo, visualizamos las relaciones clave entre variables para entender el comportamiento del mercado.
             </p>
 
             <div class="row g-5">
@@ -129,10 +129,8 @@
                     <div class="card border-0">
                         <img src="Figures/matriz_correlacion.png" class="viz-img" alt="Matriz de Correlación">
                         <div class="card-body px-0">
-                            <h5 class="card-title text-primary">1. Correlaciones del Mercado</h5>
-                            <p class="card-text text-muted">
-                                Utilizamos un mapa de calor para identificar variables predictoras. Se confirmó una <strong>correlación positiva fuerte</strong> entre la superficie construida y el precio, lo cual justificó su uso como variable principal en la regresión.
-                            </p>
+                            <h5 class="card-title">Correlaciones del Mercado</h5>
+                            <p class="card-text text-muted">Identificamos una fuerte correlación positiva entre la superficie construida y el precio, lo cual validó la selección de variables para la regresión.</p>
                         </div>
                     </div>
                 </div>
@@ -141,10 +139,8 @@
                     <div class="card border-0">
                         <img src="Figures/relacion_precio_vs_m2_totales.png" class="viz-img" alt="Scatter Plot Precio vs M2">
                         <div class="card-body px-0">
-                            <h5 class="card-title text-primary">2. Heteroscedasticidad</h5>
-                            <p class="card-text text-muted">
-                                El gráfico de dispersión revela que a mayor tamaño de la propiedad, mayor es la varianza del precio. Esto indica que el segmento de lujo es más difícil de predecir que el segmento medio debido a la dispersión de los datos.
-                            </p>
+                            <h5 class="card-title">Dispersión de Precios</h5>
+                            <p class="card-text text-muted">La relación precio/superficie muestra heteroscedasticidad: la varianza aumenta en propiedades de mayor tamaño, lo que dificulta la predicción en el segmento de lujo.</p>
                         </div>
                     </div>
                 </div>
@@ -153,10 +149,8 @@
                     <div class="card border-0">
                         <img src="Figures/distribucion_precio_por_m2_construido.png" class="viz-img" alt="Distribución histograma">
                         <div class="card-body px-0">
-                            <h5 class="card-title text-primary">3. Distribución de Precios</h5>
-                            <p class="card-text text-muted">
-                                Analizamos el histograma de precios por m² para entender la forma del mercado. Observamos una distribución con sesgo positivo, lo que nos ayudó a aislar outliers extremos que podían "ensuciar" el entrenamiento.
-                            </p>
+                            <h5 class="card-title">Distribución Normalizada</h5>
+                            <p class="card-text text-muted">Análisis de la densidad de precios por m² construido, permitiendo identificar la "zona media" del mercado y aislar outliers.</p>
                         </div>
                     </div>
                 </div>
@@ -165,10 +159,8 @@
                     <div class="card border-0">
                         <img src="Figures/precio_promedio_segun_amenidades.png" class="viz-img" alt="Precio según amenidades">
                         <div class="card-body px-0">
-                            <h5 class="card-title text-primary">4. Valor de las Amenidades</h5>
-                            <p class="card-text text-muted">
-                                Evaluamos variables categóricas. La presencia de piscina, jardín o quincho mostró un impacto medible en el precio promedio, validando la necesidad de incluir estas columnas en el modelo final.
-                            </p>
+                            <h5 class="card-title">Impacto de las Amenidades</h5>
+                            <p class="card-text text-muted">Evaluación de cómo características adicionales (piscina, jardín) influyen en el valor final.</p>
                         </div>
                     </div>
                 </div>
@@ -176,23 +168,17 @@
         </div>
     </section>
 
-    <section id="resultados" class="section-padding bg-light-gray">
+    <section id="resultados-modelo" class="section-padding bg-light-gray">
         <div class="container">
-            <h2 class="text-center mb-5">Resultados del Modelo Predictivo</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="card card-custom p-5 bg-white">
-                        <h3 class="text-success mb-3">Casas: Éxito Rotundo</h3>
-                        <p class="lead">Logramos un <strong>R² de 0.9</strong> en el conjunto de prueba.</p>
-                        <p>El modelo de Regresión Lineal para casas demostró ser altamente efectivo. Las predicciones entregadas se mantuvieron consistentemente dentro de los rangos de mercado reales, validando la calidad de las variables seleccionadas (superficie + ubicación).</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 mt-4 mt-lg-0">
-                    <div class="card card-custom p-5 bg-white border-start border-4 border-warning">
-                        <h3 class="text-warning mb-3">Departamentos: Desafíos</h3>
-                        <p class="lead">Rendimiento inferior al esperado.</p>
-                        <p>A diferencia de las casas, el precio de los departamentos depende críticamente de variables que no siempre son públicas, como la <strong>orientación</strong> (Norte/Sur) y el <strong>número de piso</strong>. La ausencia de estos datos en el scraping limitó la precisión en este segmento.</p>
-                    </div>
+            <h2 class="text-center mb-4">Resultados del Modelo</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p class="lead">
+                        El modelo mostró un desempeño sólido en <strong>casas</strong>, logrando un <strong>R² de 0.9</strong>. Los precios aproximados que se entregaban eran muy cercanos a los rangos reales de mercado.
+                    </p>
+                    <p>
+                        Sin embargo, el rendimiento fue inferior en <strong>departamentos</strong> debido a la falta de variables clave para este tipo de vivienda (orientación, piso) que no estaban disponibles en la data pública.
+                    </p>
                 </div>
             </div>
         </div>
@@ -207,15 +193,15 @@
                         <h4><i class="bi bi-exclamation-triangle-fill text-danger"></i> Fuentes de Error</h4>
                         <ul class="list-unstyled mt-3">
                             <li class="mb-2"><strong>1. Distorsión por "Ventas en Verde":</strong> En ciertos sectores, los precios de proyectos nuevos distorsionan los valores de reventa, generando estimaciones menos precisas.</li>
-                            <li class="mb-2"><strong>2. Escasez de Datos (Cold Start):</strong> En comunas con menos de 100 registros, el modelo produce predicciones poco representativas.</li>
+                            <li class="mb-2"><strong>2. Escasez de Datos:</strong> En comunas con menos de 100 registros, el modelo produce predicciones poco representativas.</li>
                             <li class="mb-2"><strong>3. Variables Ocultas:</strong> La baja performance en departamentos se debe a la ausencia de datos como "orientación" o "número de piso" en el scraping.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="mb-4 p-3 border rounded">
+                    <div class="mb-4 p-3">
                         <h4><i class="bi bi-shield-check text-success"></i> Ética y Proyecciones</h4>
-                        <p><strong>Implicancias Éticas:</strong> Automatizar tasaciones puede perpetuar sesgos si los datos históricos reflejan discriminación de zonas (redlining digital). Además, una herramienta mal calibrada podría inflar artificialmente precios en barrios emergentes, contribuyendo a la gentrificación.</p>
+                        <p><strong>Implicancias Éticas:</strong> Automatizar tasaciones puede perpetuar sesgos si los datos históricos reflejan discriminación de zonas. Además, una herramienta mal calibrada podría inflar artificialmente precios en barrios emergentes.</p>
                         <p><strong>Trabajo Futuro:</strong> Es fundamental diseñar un scraping específico para el segmento de departamentos y actualizar los datos periódicamente para que el sistema refleje la evolución real del mercado inmobiliario.</p>
                     </div>
                 </div>
