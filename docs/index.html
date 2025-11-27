@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Tasación Inmobiliaria | Grupo 23</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Generales */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --hover-color: #2980b9;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Encabezado */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Tarjetas Interactivas */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: var(--accent-color);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .card-header i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: bold;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+
+        .card:hover .btn {
+            background: var(--hover-color);
+        }
+
+        /* Sección de Documentos PDF */
+        .docs-section {
+            margin-top: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .docs-section h3 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .docs-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .docs-list li {
+            margin: 15px 0;
+        }
+
+        .docs-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .docs-list a:hover {
+            color: var(--accent-color);
+        }
+
+        .docs-list span {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tasación Inmobiliaria Automatizada</h1>
+        <p>Proyecto de Ciencia de Datos | IMT2200</p>
+    </header>
+
+    <div class="container">
+        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem;">
+            Bienvenido al portafolio digital del <strong>Grupo 23</strong>. A continuación, puedes navegar interactivamente por las etapas clave de nuestro proyecto: desde el análisis exploratorio de los datos hasta la implementación del modelo de predicción.
+        </p>
+
+        <div class="grid">
+            <a href="notebook_eda.html" class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    <h2>Análisis Exploratorio (EDA)</h2>
+                </div>
+                <div class="card-body">
+                    <p>Descubre cómo se distribuyen los precios en la Región Metropolitana, las correlaciones entre variables y la limpieza de datos geoespaciales.</p>
+                    <span class="btn">Ver Análisis</span>
+                </div>
+            </a>
+
+            <a href="programa_tasacion.html" class="card">
+                <div class="card-header">
+                    <i class="fas fa-robot"></i>
+                    <h2>Modelo de Tasación</h2>
+                </div>
+                <div class="card-body">
+                    <p>Explora el pipeline de Machine Learning, la ingeniería de características y la función de tasación final que predice el valor en UF.</p>
+                    <span class="btn">Ver Modelo</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="docs-section">
+            <h3>📄 Documentación Formal</h3>
+            <ul class="docs-list">
+                <li>
+                    <a href="Actualización_Final_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
+                        <span>📂</span> Informe Final del Proyecto (PDF)
+                    </a>
+                </li>
+                <li>
+                    <a href="Entrega_Inicial_del_Repositorio__Tasación_automática_de_propiedades.pdf" target="_blank">
+                        <span>📂</span> Entrega Inicial (PDF)
+                    </a>
+                </li>
+                <li>
+                    <a href="PDF Propuesta Proyecto IMT2220.pdf" target="_blank">
+                        <span>📂</span> Propuesta de Proyecto (PDF)
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Pontificia Universidad Católica de Chile - 2025</p>
+        <p>Desarrollado por Javier Cuitiño, Simón Saravia y Alejandro Orellana</p>
+    </footer>
+
+</body>
+</html>
